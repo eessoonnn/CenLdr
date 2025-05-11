@@ -16,7 +16,7 @@ This project is only used for education and learning purposes, and any illegal a
 
 - UnHook In A More Elegant Way ？ Or Just Lets Say Syscall :>
 
-  <img src="D:\Evasion\Github\CenLdr\Img\BeforeUnHook.png" alt="BeforeUnHook" style="zoom: 67%;" /> 
+  <img src=".\BeforeUnHook.png" alt="BeforeUnHook" style="zoom: 67%;" /> 
 
   It Will Still Work In Some EDR Environment ：）
 
