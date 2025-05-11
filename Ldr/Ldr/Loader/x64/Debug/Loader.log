@@ -1,0 +1,32 @@
+﻿D:\Coding\VisualStudio\Product\MSBuild\Microsoft\VC\v170\Microsoft.CppBuild.targets(534,5): warning MSB8028: 中间目录(x64\Debug\)包含从另一个项目(Loader.vcxproj)共享的文件。   这会导致错误的清除和重新生成行为。
+  Crc32.c
+  Ldr.c
+D:\Evasion\Github\CenLdr\Ldr\Ldr\Loader\Ldr.c(52,74): warning C4133: “函数”: 从“SIZE_T *”到“PULONG”的类型不兼容
+D:\Evasion\Github\CenLdr\Ldr\Ldr\Loader\Ldr.c(53,26): warning C4305: “函数”: 从“__int64”到“unsigned int”截断
+D:\Evasion\Github\CenLdr\Ldr\Ldr\Loader\Ldr.c(57,74): warning C4133: “函数”: 从“SIZE_T *”到“PULONG”的类型不兼容
+D:\Evasion\Github\CenLdr\Ldr\Ldr\Loader\Ldr.c(58,27): warning C4305: “函数”: 从“__int64”到“unsigned int”截断
+D:\Evasion\Github\CenLdr\Ldr\Ldr\Loader\Ldr.c(62,123): warning C4047: “函数”:“PUSER_THREAD_START_ROUTINE”与“ULONG_PTR”的间接级别不同
+D:\Evasion\Github\CenLdr\Ldr\Ldr\Loader\Ldr.c(62,123): warning C4024: “win32Api”: 形参和实参 5 的类型不同
+D:\Evasion\Github\CenLdr\Ldr\Ldr\Loader\Ldr.c(67,64): warning C4305: “函数”: 从“__int64”到“unsigned int”截断
+D:\Evasion\Github\CenLdr\Ldr\Ldr\Loader\Ldr.c(73,65): warning C4305: “函数”: 从“__int64”到“unsigned int”截断
+D:\Evasion\Github\CenLdr\Ldr\Ldr\Loader\Ldr.c(74,60): warning C4305: “函数”: 从“__int64”到“unsigned int”截断
+D:\Evasion\Github\CenLdr\Ldr\Ldr\Loader\Ldr.c(100,15): warning C4047: “=”:“PBYTE”与“ULONG_PTR”的间接级别不同
+D:\Evasion\Github\CenLdr\Ldr\Ldr\Loader\Ldr.c(101,9): warning C4477: “printf”: 格式字符串“%llx”需要类型“unsigned __int64”的参数，但可变参数 2 拥有了类型“PBYTE”
+  AntiVirtual.c
+  RC4.c
+  SelfAchive.c
+D:\Evasion\Github\CenLdr\Ldr\Ldr\Loader\SelfAchive.c(14,2): warning C4047: “return”:“ULONG_PTR”与“PULONG_PTR”的间接级别不同
+D:\Evasion\Github\CenLdr\Ldr\Ldr\Loader\SelfAchive.c(52,32): warning C4047: “函数”:“PULONG_PTR”与“unsigned __int64”的间接级别不同
+D:\Evasion\Github\CenLdr\Ldr\Ldr\Loader\SelfAchive.c(52,32): warning C4024: “GetModuleBase”: 形参和实参 1 的类型不同
+D:\Evasion\Github\CenLdr\Ldr\Ldr\Loader\SelfAchive.c(53,35): warning C4047: “函数”:“PULONG_PTR”与“unsigned __int64”的间接级别不同
+D:\Evasion\Github\CenLdr\Ldr\Ldr\Loader\SelfAchive.c(53,35): warning C4024: “GetModuleBase”: 形参和实参 1 的类型不同
+D:\Evasion\Github\CenLdr\Ldr\Ldr\Loader\SelfAchive.c(21,9): warning C4047: “初始化”:“PTEB *”与“_TEB *”的间接级别不同
+D:\Evasion\Github\CenLdr\Ldr\Ldr\Loader\SelfAchive.c(23,13): warning C4047: “初始化”:“PULONG_PTR”与“unsigned __int64”的间接级别不同
+D:\Evasion\Github\CenLdr\Ldr\Ldr\Loader\SelfAchive.c(77,58): warning C4305: “函数”: 从“__int64”到“unsigned int”截断
+D:\Evasion\Github\CenLdr\Ldr\Ldr\Loader\SelfAchive.c(84,4): warning C4047: “return”:“PVOID”与“ULONG_PTR”的间接级别不同
+  UnHook.c
+D:\Evasion\Github\CenLdr\Ldr\Ldr\Loader\UnHook.c(50,29): warning C4047: “=”:“PVOID”与“ULONG_PTR”的间接级别不同
+D:\Evasion\Github\CenLdr\Ldr\Ldr\Loader\UnHook.c(51,75): warning C4133: “函数”: 从“SIZE_T *”到“PULONG”的类型不兼容
+D:\Evasion\Github\CenLdr\Ldr\Ldr\Loader\UnHook.c(53,76): warning C4133: “函数”: 从“SIZE_T *”到“PULONG”的类型不兼容
+  正在生成代码...
+  Loader.vcxproj -> D:\Evasion\Github\CenLdr\Ldr\Ldr\x64\Debug\ldr.exe
