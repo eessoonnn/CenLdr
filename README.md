@@ -24,7 +24,7 @@ This project is only used for education and learning purposes, and any illegal a
 
   
 
-- Spoof  Call ? **Maybe More "Evasive" Techniques Should Be Used In Your UDRL **
+- Spoof  Call ? **Maybe More "Evasive" Techniques Should Be Used In Your UDRL**
 
 - CRC32 API Hash (When Calling GetProcAddressByHash)
 
@@ -40,7 +40,7 @@ This project is only used for education and learning purposes, and any illegal a
 
 - Anti SandBox && Debugger (Whatever, I Have Never Get A Beacon From My VMMachine :D )
 
-  ![VMMachine](.\Img\VMMachine.png) 
+    <img src=".\Img\VMMachine.png" alt="VmMachine" /> 
 
 - PreLoad(This Will Be Quite Effective When Comes With Some EDR)
 
