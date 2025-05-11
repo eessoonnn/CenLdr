@@ -14,7 +14,7 @@ This project is only used for education and learning purposes, and any illegal a
 
 ## Features && Todo ?
 
-- UnHook In A More Elegant Way ？ Or Just Lets Say Syscall :>
+- UnHook In A More Elegant Way ？ Or Lets Just Say Syscall :>
 
   <img src=".\Img\BeforeUnHook.png" alt="BeforeUnHook" style="zoom: 67%;" /> 
 
